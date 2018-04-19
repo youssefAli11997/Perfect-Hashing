@@ -14,12 +14,7 @@ public class UniversalHashing implements IUniversalHashing {
     }
 
     @Override
-    public int hash(int key) {
-        byte[][] X = getMatrixX(key);
-        return get_integer_h_x(X);
-    }
-
-    private void constructMatrixH() {
+    public void constructMatrixH() {
         Random rand = new Random();
         for(int i=0; i<rows; i++){
             for(int j=0; j<cols; j++){
@@ -29,6 +24,12 @@ public class UniversalHashing implements IUniversalHashing {
             System.out.println();
         }
         System.out.println("---- H is done ----");
+    }
+
+    @Override
+    public int hash(int key) {
+        byte[][] X = getMatrixX(key);
+        return get_integer_h_x(X);
     }
 
     private byte[][] getMatrixX(int key) {
