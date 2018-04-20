@@ -19,15 +19,16 @@ public class UniversalHashing implements IUniversalHashing {
         for(int i=0; i<rows; i++){
             for(int j=0; j<cols; j++){
                 H[i][j] = (byte)rand.nextInt(2);
-                System.out.print(H[i][j]);
+                //System.out.print(H[i][j]);
             }
-            System.out.println();
+            //System.out.println();
         }
-        System.out.println("---- H is done ----");
+       //System.out.println("---- H is done ----");
     }
 
     @Override
     public int hash(int key) {
+        //System.out.println("key is " + key);
         byte[][] X = getMatrixX(key);
         return get_integer_h_x(X);
     }
@@ -38,9 +39,9 @@ public class UniversalHashing implements IUniversalHashing {
         for(int i=0; i<cols; i++){
             X[i][0] = (byte) (key % 2);
             key /= 2;
-            System.out.println(X[i][0]);
+            //System.out.println(X[i][0]);
         }
-        System.out.println("---- X is done ----");
+        //System.out.println("---- X is done ----");
 
         return X;
     }
@@ -52,7 +53,7 @@ public class UniversalHashing implements IUniversalHashing {
         for(int i=0; i<rows; i++){
             value += h_x[i][0] * Math.pow(2, i);
         }
-        System.out.println("value of h(x) = " + value);
+        //System.out.println("value of h(x) = " + value);
 
         return value;
     }
@@ -66,9 +67,9 @@ public class UniversalHashing implements IUniversalHashing {
                 h_x[i][0] += (H[i][j] * X[j][0]) % 2;
             }
             h_x[i][0] %= 2;
-            System.out.println(h_x[i][0]);
+            //System.out.println(h_x[i][0]);
         }
-        System.out.println("---- h_x is done ----");
+        //System.out.println("---- h_x is done ----");
 
         return h_x;
     }

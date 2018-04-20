@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class PerfectHashing_N2 implements IPerfectHashing {
 
-    private Table table;
-    private IUniversalHashing universalHashing;
+    N2Table table;
+    IUniversalHashing universalHashing;
 
     public PerfectHashing_N2(int N){
-        table = new Table(N*N);
-        initUniversalHashing(N, N*N);
+        table = new N2Table(N*N);
+        initUniversalHashing(N*N);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PerfectHashing_N2 implements IPerfectHashing {
     }
 
 
-    private void initUniversalHashing(int N, int M) {
+    void initUniversalHashing(int M) {
         int b = (int)(Math.log10(M) / Math.log10(2));
         int u = 32; //(int)(Math.log10(N) / Math.log10(2)) + 2;
         universalHashing = new UniversalHashing(u, b);
