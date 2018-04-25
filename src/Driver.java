@@ -21,13 +21,25 @@ public class Driver {
                 keys = s.split(",");
             }
 
-            IPerfectHashing hashing = new PerfectHashing_N(keys.length);
+            IPerfectHashing hashing = new PerfectHashing_N2(keys.length);
+
+            //int i=0;
 
             for(String key : keys){
-                System.out.println(hashing.insert(Integer.parseInt(key)));
+                /*if(i < 1000)
+                    System.out.println(hashing.insert(Integer.parseInt(key)));
+                else*/
+                    hashing.insert(Integer.parseInt(key));
+                //i++;
             }
 
-            ((PerfectHashing_N)hashing).printTable();
+            if(hashing instanceof PerfectHashing_N) {
+                ((PerfectHashing_N) hashing).printTable();
+            }
+
+            if(hashing instanceof PerfectHashing_N2){
+                System.out.println("rebuilds: "+((PerfectHashing_N2) hashing).getRebuildsCount());
+            }
 
 
             /*System.out.println(hashing.insert(4));

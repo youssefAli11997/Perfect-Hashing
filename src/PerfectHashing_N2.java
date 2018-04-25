@@ -4,10 +4,12 @@ public class PerfectHashing_N2 implements IPerfectHashing {
 
     N2Table table;
     IUniversalHashing universalHashing;
+    private int rebuilds;
 
     public PerfectHashing_N2(int N){
         table = new N2Table(N*N);
         initUniversalHashing(N*N);
+        rebuilds = 0;
     }
 
     @Override
@@ -23,6 +25,8 @@ public class PerfectHashing_N2 implements IPerfectHashing {
             return true;
         }
         else{ // collision
+            // rebuilding
+            rebuilds ++;
             universalHashing.constructMatrixH();
             ArrayList<Integer> keys = table.getAllInsertedKeys();
             keys.add(key);
@@ -44,5 +48,9 @@ public class PerfectHashing_N2 implements IPerfectHashing {
         int b = (int)(Math.log10(M) / Math.log10(2));
         int u = 32; //(int)(Math.log10(N) / Math.log10(2)) + 2;
         universalHashing = new UniversalHashing(u, b);
+    }
+
+    public int getRebuildsCount() {
+        return rebuilds;
     }
 }
